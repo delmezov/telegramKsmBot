@@ -100,7 +100,7 @@ def end_poll(message):
 def delete_keybord(message):
     if message.text == 'Всё верно!':  
         bot.send_message(message.chat.id, config.last_message, parse_mode = "HTML", reply_markup = types.ReplyKeyboardRemove())
-        #bot.send_message(bot.get_chat('@ksmagro').id, adv_functions.list_to_string(user_dict[message.chat.id]) + config.who_send_message.format(message.from_user.first_name, message.from_user.last_name, message.from_user.username), parse_mode = "HTML")
+        bot.send_message(bot.get_chat('@ksmagro').id, adv_functions.list_to_string(user_dict[message.chat.id]) + config.who_send_message.format(message.from_user.first_name, message.from_user.last_name, message.from_user.username), parse_mode = "HTML")
         check_db = Database().insert_data(user_dict.get(message.chat.id))
         if check_db == 'error':
             print("DB doesn't work")
