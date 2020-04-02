@@ -1,7 +1,7 @@
 import telebot
 from telebot import types
-
-token = "1033623575:AAE9F7tT_lcRMTZs6juRrtbwtg7B5UPiaUs"
+token = "1119498614:AAEe4XKvga_S3i2HhKvetBoQVYSPCvj6LaM"
+#token = "1033623575:AAE9F7tT_lcRMTZs6juRrtbwtg7B5UPiaUs"
 
 proxy_const = {'https':'socks5://Dzhabri:e834326d@195.123.249.187:1490'}
 
@@ -71,3 +71,11 @@ choose_end_keybord = telebot.types.ReplyKeyboardMarkup(True, True).row('Всё �
 start_keybord = telebot.types.ReplyKeyboardMarkup(True, True).row('/start')
 
 triger_words = '(\s+|^)[пПnрРp]?[3ЗзВBвПnпрРpPАaAаОoO0о]?[сСcCиИuUОoO0оАaAаыЫуУyтТT]?[Ппn][иИuUeEеЕ][зЗ3][ДдDd]\w*[\?\,\.\;\-]*|(\s+|^)[рРpPпПn]?[рРpPоОoO0аАaAзЗ3]?[оОoO0иИuUаАaAcCсСзЗ3тТTуУy]?[XxХх][уУy][йЙеЕeEeяЯ9юЮ]\w*[\?\,\.\;\-]*|(\s+|^)[бпПnБ6][лЛ][яЯ9]([дтДТDT]\w*)?[\?\,\.\;\-]*|(\s+|^)(([зЗоОoO03]?[аАaAтТT]?[ъЪ]?)|(\w+[оОOo0еЕeE]))?[еЕeEиИuUёЁ][бБ6пП]([аАaAиИuUуУy]\w*)?[\?\,\.\;\-]*'
+
+#config for DB
+
+hostname = ''
+username = ''
+password = ''
+db_name = ""
+table_name = ""

@@ -6,6 +6,7 @@ import adv_functions
 from telebot import apihelper
 from time import time
 import re
+from DBClass.database import Database
 
 apihelper.proxy = config.proxy_const
 bot = telebot.TeleBot(config.token)
@@ -99,8 +100,10 @@ def end_poll(message):
 def delete_keybord(message):
     if message.text == 'Всё верно!':  
         bot.send_message(message.chat.id, config.last_message, parse_mode = "HTML", reply_markup = types.ReplyKeyboardRemove())
-        bot.send_message(bot.get_chat('@ksmagro').id, adv_functions.list_to_string(user_dict[message.chat.id]) + config.who_send_message.format(message.from_user.first_name, message.from_user.last_name, message.from_user.username), parse_mode = "HTML")
-        #adv_functions.adv_creator(user_dict[message.chat.id])
+        #bot.send_message(bot.get_chat('@ksmagro').id, adv_functions.list_to_string(user_dict[message.chat.id]) + config.who_send_message.format(message.from_user.first_name, message.from_user.last_name, message.from_user.username), parse_mode = "HTML")
+        check_db = Database().insert_data(user_dict.get(message.chat.id))
+        if check_db == 'error':
+            print("DB doesn't work")
         del user_dict[message.chat.id]
         bot.send_message(message.chat.id, config.start_again_message, reply_markup = config.start_keybord) 
 
