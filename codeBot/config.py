@@ -1,7 +1,7 @@
 import telebot
 from telebot import types
-token = "1119498614:AAEe4XKvga_S3i2HhKvetBoQVYSPCvj6LaM"
-#token = "1033623575:AAE9F7tT_lcRMTZs6juRrtbwtg7B5UPiaUs"
+
+token = "1033623575:AAE9F7tT_lcRMTZs6juRrtbwtg7B5UPiaUs"
 
 proxy_const = {'https':'socks5://Dzhabri:e834326d@195.123.249.187:1490'}
 
