@@ -3,6 +3,7 @@ import re
 
 
 counts = ['пшеница', 'ячмень', 'соя','горох','кукуруза','семечка','лен','льна']
+
 result = ""
 
 message = """Срочно куплю кукурузу ГОСТ
@@ -16,13 +17,24 @@ message = """Срочно куплю кукурузу ГОСТ
 Рязанская, Тульская, Липецкая, Тамбовская области"""
 
 def get_found_word(message):
-    for i in counts:
-        result = re.findall(r'' + getRegular.find_word(i), message)    
+    for prod in counts:
+        result = re.findall(r'' + getRegular.find_word(prod), message)    
+        if result != []:
+            return prod
+'''
+def test(message):
+    for el in count_for_sell:
+        result = re.findall(r'' + el, message)    
         if result != []:
             return result
-    
-    
+'''
 
-print(get_found_word(message))
+def get_sell_or_prod(message):
+    if (re.findall(r'' + '[а-я]{0,2}[к][у][п]\w+', message)):
+        return 'Покупка'
+    if (re.findall(r'' + '\\b[п|П][р][о][д][а]\w+', message)):
+        return 'Продажа'
+    
+    
 
 

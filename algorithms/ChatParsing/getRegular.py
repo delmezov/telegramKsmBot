@@ -14,20 +14,6 @@ def find_word(string):
             reg_string += '[' + i + ']' + '{' + '1' + '}'
         reg_string += '[' + glasn + ']?'
 
-
-
-
-
     reg_string = '\\b' + reg_string + '\\b'
     return reg_string
 
-
-'''
-def find_word(string):
-    reg_string = ""
-    glasn = ['ауоыиэяюёе']
-    if string[-1] in glasn:
-    for i in string:
-        reg_string += '[' + i + ']' + '{' + '1' + '}'
-    return reg_string
-    '''
