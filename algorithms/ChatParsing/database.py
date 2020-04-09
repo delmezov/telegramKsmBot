@@ -35,6 +35,7 @@ class Database:
                   type_of_adv VARCHAR(255), 
                   product_type VARCHAR(255),
                   phone_number VARCHAR(255),
+                  place VARCHAR(255),
                   data VARCHAR(255))
                """.format(
                    TABLE = self.table_name
@@ -46,8 +47,8 @@ class Database:
     def insert_data(self, adv_info):
         if self.is_connected:
             self.cursor.execute("""INSERT INTO {TABLE} 
-                                (username, type_of_adv, product_type, phone_number, data) 
-                                VALUES (%s,%s,%s,%s,%s)""".format(
+                                (username, type_of_adv, product_type, phone_number, place, data) 
+                                VALUES (%s,%s,%s,%s,%s,%s)""".format(
                 TABLE = self.table_name
                 ), adv_info)
             self.con.commit()

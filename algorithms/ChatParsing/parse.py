@@ -3,6 +3,7 @@ import requests
 import regularFind
 import re
 from database import Database
+from messageParsing import message_parsing
 
 adv_dict = {}
 db = Database()
@@ -10,7 +11,7 @@ db = Database()
 def get_html(url):
     r = open(url, 'r')
     return r.read()
-for i in range(2,42):
+for i in range(41,42):
     page = get_html('History/messages' + str(i) + '.html')
     soup = BeautifulSoup(page,'lxml')
     for tag in soup.find_all('div', {'class':'message'} and {'class':'default'} and {'class':'clearfix'}):
@@ -21,20 +22,17 @@ for i in range(2,42):
         if (tag.find('div', {'class': "date"}) != None):
             data = tag.find('div', {'class': "date"})['title']
             data = data[0:data.find(' ')]
+            
+        adv_info = message_parsing(message)  
 
-            num = re.findall(r'' + regularFind.find_num, message )
-            prod = regularFind.get_found_word(message.lower())
-            buy_sell_ = regularFind.get_sell_or_prod(message.lower())
-
-        if (num) and (prod) and (buy_sell_):    
-            adv_dict[user] = [user, buy_sell_, prod, num[0], data]
-            db.insert_data(adv_dict.get(user))
+        if (adv_info):    
+            adv_dict[user] = [user] + adv_info
+            #db.insert_data(adv_dict.get(user))
 
 
-'''
+
 for el in adv_dict:
     print(el + '   ' + str(adv_dict.get(el)))
 
 
 print(len(adv_dict))
-'''
