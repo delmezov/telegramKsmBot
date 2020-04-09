@@ -39,7 +39,7 @@ async def normal_handler(event):
         user_full_name = None
 
     if (adv_info):
-        adv_info = [user_full_name] + adv_info
+        adv_info = [user_full_name] + adv_info + [date]
         with open ('advs.csv', 'a+', newline='') as file:
             writer = csv.writer(file)
             writer = writer.writerow(adv_info)

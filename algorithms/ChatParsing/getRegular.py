@@ -33,3 +33,18 @@ def find_geo(string):
     #print(reg_string)
     return reg_string
     
+def find_geo_name(string):
+    
+    reg_string = ""
+    if len(string) > 4:
+        for i in string[:-2]:
+                reg_string += '[' + i + ']' + '{' + '1' + '}'
+        reg_string = reg_string + '\S+'
+    else:
+        for i in string[:-1]:
+                reg_string += '[' + i + ']' + '{' + '1' + '}'
+        reg_string = '\\b' + reg_string + '\S+'
+
+    return reg_string
+
+print(find_geo_name('воронежская'))

@@ -1,5 +1,6 @@
 import getRegular
 import re
+import geos_names
 
 find_num = '[-+]?[7|8]\s?[-]?[(]?[0-9][0-9][0-9]\s?[-]?[)]?\s?[-]?[0-9]\s?[0-9]\s?[0-9][-]?\s?[0-9]\s?[0-9][-]?\s?[0-9]\s?[0-9]'
 
@@ -29,25 +30,41 @@ def get_found_place(message):
         if result != []:
             #print(result[0])
             
-            message = message.replace('.'," ")
-            message = message.replace(','," ")
-            message = message.replace('!'," ")
-            message = message.replace('?'," ")
-            message = message.replace('-'," ")
-            message = message.replace('\n'," ")
-            message = message.replace(')'," ")
-            message = message.replace('('," ")
-            message = message.replace(';'," ")
-            message = message.replace(':'," ")
-            message = remove_emoji(message)
+            message = clean_message(message)
             message = message.split()
             for i in range(len(message)):
                 if result[0] in message[i]:
                     message[i] = result[0]
-            if el == "область":
-                return message[message.index(result[0])-1] + " " + 'обл'
+            
+            if el == "область" or el == "обл":
+                print(message)
+                try_geo = get_found_geos_name(message[message.index(result[0])-1],geos_names.obl)
+                if try_geo:
+                    return try_geo + " " + "обл"
+                else:
+                    return message[message.index(result[0])-1] + " " + "обл"
+                
+            if el == "край":
+                try_geo = get_found_geos_name(message[message.index(result[0])-1],geos_names.reg)
+                if try_geo:
+                    return try_geo + " " + "край"
+                else:
+                    return "край" + " " + get_found_geos_name(message[message.index(result[0])+1],geos_names.reg) 
+            
+            if el == "республика" or el == "р-ка":
+                try_geo = get_found_geos_name(message[message.index(result[0])-1],geos_names.resp)
+                if try_geo:
+                    return try_geo + " " + "республика"
+                else:
+                    return "республика" + " " + get_found_geos_name(message[message.index(result[0])+1],geos_names.resp)
             else:
                 return message[message.index(result[0])-1] + " " + result[0]
+
+def get_found_geos_name(message, geo_names):
+    for geo in geo_names:
+        result = re.findall(r'' + getRegular.find_geo_name(geo.lower()), message)    
+        if result != []:
+            return geo
             
 def remove_emoji(string):
     emoji_pattern = re.compile("["
@@ -61,5 +78,18 @@ def remove_emoji(string):
     return emoji_pattern.sub(r'', string)
     
     
+def clean_message(message):
+    message = message.replace('.'," ")
+    message = message.replace(','," ")
+    message = message.replace('!'," ")
+    message = message.replace('?'," ")
+    message = message.replace('-'," ")
+    message = message.replace('\n'," ")
+    message = message.replace(')'," ")
+    message = message.replace('('," ")
+    message = message.replace(';'," ")
+    message = message.replace(':'," ")
+    message = remove_emoji(message)
 
+    return message
 
