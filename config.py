@@ -88,6 +88,7 @@ start_keybord = telebot.types.ReplyKeyboardMarkup(True, True).row('/start')
 
 triger_words = '(\s+|^)[пПnрРp]?[3ЗзВBвПnпрРpPАaAаОoO0о]?[сСcCиИuUОoO0оАaAаыЫуУyтТT]?[Ппn][иИuUeEеЕ][зЗ3][ДдDd]\w*[\?\,\.\;\-]*|(\s+|^)[рРpPпПn]?[рРpPоОoO0аАaAзЗ3]?[оОoO0иИuUаАaAcCсСзЗ3тТTуУy]?[XxХх][уУy][йЙеЕeEeяЯ9юЮ]\w*[\?\,\.\;\-]*|(\s+|^)[бпПnБ6][лЛ][яЯ9]([дтДТDT]\w*)?[\?\,\.\;\-]*|(\s+|^)(([зЗоОoO03]?[аАaAтТT]?[ъЪ]?)|(\w+[оОOo0еЕeE]))?[еЕeEиИuUёЁ][бБ6пП]([аАaAиИuUуУy]\w*)?[\?\,\.\;\-]*'
 
-head_font = ImageFont.truetype("content/Century Gothic.ttf", size=58)
-main_font = ImageFont.truetype("content/Century Gothic.ttf", size=55)
+head_font = ImageFont.truetype("content/8483.ttf", size=58)
+main_font = ImageFont.truetype("content/8483.ttf", size=53)
+
 tm_text = "@KSM"
