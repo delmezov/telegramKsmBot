@@ -37,26 +37,40 @@ def get_found_place(message):
                     message[i] = result[0]
             
             if el == "область" or el == "обл":
-                print(message)
+                #print(message)
                 try_geo = get_found_geos_name(message[message.index(result[0])-1],geos_names.obl)
                 if try_geo:
                     return try_geo + " " + "обл"
                 else:
-                    return message[message.index(result[0])-1] + " " + "обл"
-                
+                    try:
+                        return "обл" + " " + get_found_geos_name(message[message.index(result[0])+1],geos_names.resp)
+                    except TypeError:
+                        return message[message.index(result[0])-1] + " " + "обл"
+                    except IndexError:
+                        return message[message.index(result[0])-1] + " " + "обл"
             if el == "край":
                 try_geo = get_found_geos_name(message[message.index(result[0])-1],geos_names.reg)
                 if try_geo:
                     return try_geo + " " + "край"
                 else:
-                    return "край" + " " + get_found_geos_name(message[message.index(result[0])+1],geos_names.reg) 
+                    try:
+                        return "край" + " " + get_found_geos_name(message[message.index(result[0])+1],geos_names.resp)
+                    except TypeError:
+                        return message[message.index(result[0])-1] + " " + "край"
+                    except IndexError:
+                        return message[message.index(result[0])-1] + " " + "обл"
             
             if el == "республика" or el == "р-ка":
                 try_geo = get_found_geos_name(message[message.index(result[0])-1],geos_names.resp)
                 if try_geo:
                     return try_geo + " " + "республика"
                 else:
-                    return "республика" + " " + get_found_geos_name(message[message.index(result[0])+1],geos_names.resp)
+                    try:
+                        return "республика" + " " + get_found_geos_name(message[message.index(result[0])+1],geos_names.resp)
+                    except TypeError:
+                        return message[message.index(result[0])-1] + " " + "республика"
+                    except IndexError:
+                        return message[message.index(result[0])-1] + " " + "обл"
             else:
                 return message[message.index(result[0])-1] + " " + result[0]
 
